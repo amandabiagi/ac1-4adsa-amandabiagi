@@ -33,28 +33,27 @@ class ClienteControllers {
 
     @GetMapping("/{id}")
     fun getOne(@PathVariable id:Int):ResponseEntity<Cliente> {
-        if (listaCliente.size < id) {
+        var valor:Int = id - 1
+        if (listaCliente.size >= id) {
+            println("Cliente: " + listaCliente.get(valor))
+            return ResponseEntity(listaCliente.get(valor), HttpStatus.OK)
+        } else
             println("Não contém!")
             return ResponseEntity(HttpStatus.NO_CONTENT)
-        } else
-            id - 1;
-            println("Cliente: " + listaCliente.get(id))
-        return ResponseEntity(listaCliente.get(id), HttpStatus.OK)
     }
 
     @DeleteMapping("/{id}")
     fun deleteOne(@PathVariable id:Int):ResponseEntity<String> {
+        var valor:Int = id - 1
+        if (listaCliente.size >= id) {
 
-        if (listaCliente.size < id) {
-            println("Não contém!")
-            return ResponseEntity("Não contém",HttpStatus.NO_CONTENT)
+            println("Cliente deletado! ")
+            listaCliente.removeAt(valor)
+            return ResponseEntity(HttpStatus.OK)
 
         } else
-            println("Cliente deletado! ")
-        id - 1;
-        listaCliente.removeAt(id)
-
-        return ResponseEntity(HttpStatus.OK)
+            println("Não contém!")
+            return ResponseEntity("Não contém",HttpStatus.NO_CONTENT)
     }
 
     @GetMapping("/mais-ricos")
