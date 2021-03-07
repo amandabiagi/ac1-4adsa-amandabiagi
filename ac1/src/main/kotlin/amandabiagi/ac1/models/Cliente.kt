@@ -13,8 +13,8 @@ class Cliente {
 
     fun calcularRenda(cliente: Cliente){
         when(cliente.renda){
-            in 0..2900 -> cliente.classeSocial = "Pobre"
-            in 2901..11999 -> cliente.classeSocial = "Classe Média"
+            in 0.0..2900.0 -> cliente.classeSocial = "Pobre"
+            in 2901.0..11999.0 -> cliente.classeSocial = "Classe Média"
             else -> cliente.classeSocial = "Rico"
         }
     }
